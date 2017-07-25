@@ -4,4 +4,7 @@
 (defn
   greet
   [name]
-  (str "Hello, " name "."))
+  (let [value (if (nil? name) "my friend" name)]
+    (str "Hello, " value ".")))
+
+
