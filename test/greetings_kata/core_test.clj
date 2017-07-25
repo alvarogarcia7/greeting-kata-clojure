@@ -6,5 +6,5 @@
   "about the first requirement: interpolate a simple name"
   (fact
     ""
-    (greet "bob") => "Hello, Bob"))
+    (greet "bob") => "Hello, bob"))
 
