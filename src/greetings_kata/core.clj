@@ -4,7 +4,10 @@
 (defn
   greet
   [name]
-  (let [value (if (nil? name) "my friend" name)]
-    (str "Hello, " value ".")))
+  (let [greeting "Hello, "
+        value (if (nil? name) "my friend" name)
+        upper-case? (and (> (count name) 0) (every? #(Character/isUpperCase %) name))
+        greeting (if upper-case? (clojure.string/upper-case greeting) greeting)]
+    (str greeting value ".")))
 
 
