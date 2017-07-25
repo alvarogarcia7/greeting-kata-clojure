@@ -19,3 +19,12 @@
   (fact
     ""
     (greet "JOHN") => "HELLO, JOHN."))
+
+(facts
+  "fourth requirement: support greeting multiple people"
+  (fact
+    "not shouting"
+    (greet ["Person1" "Person2"]) => "Hello, Person1 and Person2")
+  (fact
+    "shouting"
+    (greet ["PERSON1" "PERSON2"]) => "HELLO, PERSON1 AND PERSON2"))
