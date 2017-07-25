@@ -14,3 +14,8 @@
     ""
     (greet nil) => "Hello, my friend."))
 
+(facts
+  "third requirement: support shouting"
+  (fact
+    ""
+    (greet "JOHN") => "HELLO, JOHN."))
