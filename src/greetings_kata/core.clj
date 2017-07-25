@@ -1,5 +1,6 @@
 (ns greetings-kata.core
-  (:gen-class))
+  (:gen-class)
+  (:require [clojure.string :as str]))
 
 (defn
   greet
@@ -8,7 +9,7 @@
           (anonymous? [name] (nil? name))]
     (let [greeting "Hello, "
           value (if (anonymous? name) "my friend" name)
-          greeting (if (upper-case? name) (clojure.string/upper-case greeting) greeting)]
+          greeting (if (upper-case? name) (str/upper-case greeting) greeting)]
       (str greeting value "."))))
 
 
