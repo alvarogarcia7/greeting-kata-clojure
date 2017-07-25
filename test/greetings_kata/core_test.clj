@@ -1,7 +1,10 @@
 (ns greetings-kata.core-test
-  (:require [clojure.test :refer :all]
-            [greetings-kata.core :refer :all]))
+  (:use [midje.sweet])
+  (:require [greetings-kata.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(facts
+  "about the first requirement: interpolate a simple name"
+  (fact
+    ""
+    (greet "bob") => "Hello, Bob"))
+
