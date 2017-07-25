@@ -9,7 +9,7 @@
           (anonymous? [name] (nil? name))
           (base-greeting [rest] (str "Hello, " rest "."))
           (anonymous-greeting [_] (base-greeting "my friend"))
-          (personalized-greeting [name] (str "Hello, " name "."))]
+          (personalized-greeting [name] (base-greeting name))]
     (let [
           greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
           greeting (if (upper-case? name) (comp str/upper-case greeting) greeting)]
