@@ -12,7 +12,9 @@
           (personalized-greeting [name] (base-greeting name))]
     (let [
           greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
-          greeting (if (upper-case? name) (comp str/upper-case greeting) greeting)]
-      (greeting name))))
+          greeting (if (if (coll? name) (every? upper-case? name) (upper-case? name)) (comp str/upper-case greeting) greeting)
+          names (if (coll? name) (str/join " and " name) name)
+          ]
+      (greeting names))))
 
 
