@@ -8,3 +8,9 @@
     ""
     (greet "bob") => "Hello, bob."))
 
+(facts
+  "second requirement: a default value"
+  (fact
+    ""
+    (greet nil) => "Hello, my friend."))
+
