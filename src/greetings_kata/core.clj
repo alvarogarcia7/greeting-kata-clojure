@@ -7,7 +7,8 @@
   [name]
   (letfn [(upper-case? [line] (and (> (count line) 0) (every? #(Character/isUpperCase %) line)))
           (anonymous? [name] (nil? name))
-          (anonymous-greeting [_] "Hello, my friend.")
+          (base-greeting [rest] (str "Hello, " rest "."))
+          (anonymous-greeting [_] (base-greeting "my friend"))
           (personalized-greeting [name] (str "Hello, " name "."))]
     (let [
           greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
