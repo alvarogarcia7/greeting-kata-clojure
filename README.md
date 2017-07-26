@@ -8,3 +8,7 @@ Practicing the [Greetings kata](https://github.com/testdouble/contributing-tests
   * Try to separate the concern of the multiple names
   * Try to componse the functions to they follow the SRP
 
+### Running the tests
+
+See https://github.com/alvarogarcia7/cli-app-base-clojure#tests
+
