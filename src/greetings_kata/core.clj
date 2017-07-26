@@ -12,7 +12,7 @@
 (defmethod upper-case? false [name] (upper-case_? name))
 
 (defn
-  join__
+  addressing-multiple-names
   [names]
   (if (= (count names) 2)
     (str/join " and " names)
@@ -21,7 +21,7 @@
 (defmulti addressing (fn [name] (coll? name)) :default name)
 (defmethod addressing false [name] name)
 (defmethod addressing true [names]
-  (join__ names))
+  (addressing-multiple-names names))
 
 (defn
   greet
