@@ -28,3 +28,12 @@
   (fact
     "shouting"
     (greet ["PERSONA" "PERSONB"]) => "HELLO, PERSONA AND PERSONB."))
+
+(facts
+  "fifth requirement: support greeting multiple people (commas and ands)"
+  (fact
+    "not shouting"
+    (greet ["Person1" "Person2" "Person3"]) => "Hello, Person1, Person2, and Person3.")
+  (fact
+    "shouting"
+    (greet ["PERSONA" "PERSONB" "PERSONC"]) => "HELLO, PERSONA, PERSONB, AND PERSONC."))
