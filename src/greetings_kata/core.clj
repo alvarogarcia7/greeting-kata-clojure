@@ -22,11 +22,9 @@
           (base-greeting [rest] (str "Hello, " rest "."))
           (anonymous-greeting [_] (base-greeting "my friend"))
           (personalized-greeting [name] (base-greeting name))]
-    (let [
-          greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
+    (let [greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
           greeting (if (upper-case? name) (comp str/upper-case greeting) greeting)
-          names (addressing name)
-          ]
+          names (addressing name)]
       (greeting names))))
 
 
