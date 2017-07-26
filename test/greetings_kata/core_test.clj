@@ -37,3 +37,12 @@
   (fact
     "shouting"
     (greet ["PERSONA" "PERSONB" "PERSONC"]) => "HELLO, PERSONA, PERSONB, AND PERSONC."))
+
+
+(facts
+  "sixth requirement: mixing formal and informal greetin style"
+  (fact
+    "formal is first, no matter the order of the names"
+    (greet ["Person1" "Person3"]) => "Hello, Personb. AND HELLO PERSONA!."
+    (greet ["PERSONA" "Personb"]) => "Hello, Personb. AND HELLO PERSONA!."
+    ))
