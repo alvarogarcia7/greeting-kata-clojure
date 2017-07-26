@@ -20,8 +20,7 @@
 
 (defmulti addressing (fn [name] (coll? name)) :default name)
 (defmethod addressing false [name] name)
-(defmethod addressing true [names]
-  (addressing-multiple-names names))
+(defmethod addressing true [names] (addressing-multiple-names names))
 
 (defn
   greet
