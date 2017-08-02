@@ -20,7 +20,7 @@
   informal-greeting
   [names]
   (let [informal-names (filter upper-case? names)]
-    (str " AND HELLO " (first informal-names) "!")))
+    (str " AND HELLO " (str/join " AND " informal-names) "!")))
 
 (defn
   addressing-multiple-names
