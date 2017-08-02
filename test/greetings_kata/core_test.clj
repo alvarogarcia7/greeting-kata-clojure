@@ -43,6 +43,6 @@
   "sixth requirement: mixing formal and informal greetin style"
   (fact
     "formal is first, no matter the order of the names"
-    (greet ["Personb" "PERSONA"]) => "Hello, Personb. AND HELLO PERSONA!"
-    (greet ["PERSONA" "Personb"]) => "Hello, Personb. AND HELLO PERSONA!"
+    (greet ["Personb" "PERSONA" "PERSONB"]) => "Hello, Personb. AND HELLO PERSONA AND PERSONB!"
+    (greet ["PERSONA" "Personb" "PERSONB"]) => "Hello, Personb. AND HELLO PERSONA AND PERSONB!"
     ))
