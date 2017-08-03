@@ -35,17 +35,20 @@
 
 (defn xxx
   [are-mixed-greetings formal-names informal-names]
-  (let [a 1]
-    (if are-mixed-greetings
-      (str
-        (cond
-          (= 1 (count formal-names)) (first formal-names)
-          (= 2 (count formal-names)) (str/join " and " formal-names)
-          :else (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
-        "."
-        (informal-greeting informal-names))
+  (letfn [(single? [coll] (= 1 (count coll)))
+          (two? [coll] (= 1 (count coll)))
+          ]
+    (let [a 1]
+      (if are-mixed-greetings
+        (str
+          (cond
+            (single? formal-names) (first formal-names)
+            (= 2 (count formal-names)) (str/join " and " formal-names)
+            :else (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
+          "."
+          (informal-greeting informal-names))
 
-      (addressing-multiple informal-names))))
+        (addressing-multiple informal-names)))))
 
 (defn
   addressing-mixed
