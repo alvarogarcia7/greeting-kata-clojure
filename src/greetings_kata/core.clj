@@ -38,20 +38,16 @@
     "."
     ))
 
-(defn xxx
-  [are-mixed-greetings formal-names informal-names]
-  (str
-    (addressing-multiple formal-names)
-    (if are-mixed-greetings
-      (informal-greeting informal-names))))
-
 (defn
   addressing-mixed
   [names]
   (let [are-mixed-greetings (different-case names)
         informal-names (filter upper-case_? names)
         formal-names (filter (comp not upper-case_?) names)]
-    (xxx are-mixed-greetings formal-names informal-names)))
+    (str
+      (addressing-multiple formal-names)
+      (if are-mixed-greetings
+        (informal-greeting informal-names)))))
 
 
 (defmulti addressing (fn [name] (coll? name)) :default name)
