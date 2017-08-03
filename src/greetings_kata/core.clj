@@ -46,8 +46,7 @@
     (let [a 1]
       (if are-mixed-greetings
         (str
-          (greet-multiple formal-names ", " "and ")
-          "."
+          (addressing-multiple formal-names)
           (informal-greeting informal-names))
 
         (addressing-multiple informal-names)))))
