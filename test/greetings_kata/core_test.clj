@@ -40,7 +40,7 @@
 
 
 (facts
-  "sixth requirement: mixing formal and informal greetin style"
+  "sixth requirement: mixing formal and informal greeting style"
   (fact
     "formal is first, no matter the order of the names"
     (greet ["Personb" "persona" "PERSONA" "PERSONB"]) => "Hello, Personb and persona. AND HELLO PERSONA AND PERSONB!"
