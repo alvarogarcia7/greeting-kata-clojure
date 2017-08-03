@@ -16,7 +16,7 @@
   [coll]
   (apply not= (map upper-case? coll)))
 
-(defn xxy
+(defn greet-multiple
   [all-names union last-union]
   (cond
     (= 1 (count all-names)) (first all-names)
@@ -28,13 +28,13 @@
   informal-greeting
   [names]
   (let [informal-names (filter upper-case? names)]
-    (str " AND HELLO " (xxy informal-names ", " "AND ") "!")))
+    (str " AND HELLO " (greet-multiple informal-names ", " "AND ") "!")))
 
 (defn addressing-multiple
   ""
   [all-names]
   (str
-    (xxy all-names ", " "and ")
+    (greet-multiple all-names ", " "and ")
     "."
     ))
 
@@ -46,7 +46,7 @@
     (let [a 1]
       (if are-mixed-greetings
         (str
-          (xxy formal-names ", " "and ")
+          (greet-multiple formal-names ", " "and ")
           "."
           (informal-greeting informal-names))
 
