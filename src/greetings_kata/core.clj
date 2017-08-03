@@ -27,7 +27,10 @@
 (defn
   informal-greeting
   [informal-names]
-  (str " AND HELLO " (greet-multiple informal-names ", " "AND ") "!"))
+  (str
+    " AND HELLO "
+    (greet-multiple informal-names ", " "AND ")
+    "!"))
 
 (defn formal-greeting
   [all-names]
