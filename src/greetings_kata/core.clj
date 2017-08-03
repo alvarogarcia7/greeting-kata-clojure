@@ -31,7 +31,6 @@
     (str " AND HELLO " (greet-multiple informal-names ", " "AND ") "!")))
 
 (defn formal-greeting
-  ""
   [all-names]
   (str
     (greet-multiple all-names ", " "and ")
