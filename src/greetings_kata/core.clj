@@ -26,8 +26,8 @@
 
 (defn
   informal-greeting
-  [names]
-  (let [informal-names (filter upper-case? names)]
+  [informal-names]
+  (let []
     (str " AND HELLO " (greet-multiple informal-names ", " "AND ") "!")))
 
 (defn formal-greeting
