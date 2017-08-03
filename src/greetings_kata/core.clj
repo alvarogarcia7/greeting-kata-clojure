@@ -46,10 +46,7 @@
     (let [a 1]
       (if are-mixed-greetings
         (str
-          (cond
-            (single? formal-names) (first formal-names)
-            (= 2 (count formal-names)) (str/join " and " formal-names)
-            :else (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
+          (xxy formal-names ", " "and ")
           "."
           (informal-greeting informal-names))
 
