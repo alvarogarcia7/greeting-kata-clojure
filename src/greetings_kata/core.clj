@@ -40,12 +40,10 @@
 
 (defn xxx
   [are-mixed-greetings formal-names informal-names]
-  (letfn [(single? [coll] (= 1 (count coll)))
-          (two? [coll] (= 1 (count coll)))]
-    (str
-      (addressing-multiple formal-names)
-      (if are-mixed-greetings
-        (informal-greeting informal-names)))))
+  (str
+    (addressing-multiple formal-names)
+    (if are-mixed-greetings
+      (informal-greeting informal-names))))
 
 (defn
   addressing-mixed
