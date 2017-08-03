@@ -36,8 +36,7 @@
   [all-names]
   (str
     (greet-multiple all-names ", " "and ")
-    "."
-    ))
+    "."))
 
 (defn
   addressing-mixed
