@@ -16,20 +16,25 @@
   [coll]
   (apply not= (map upper-case? coll)))
 
+(defn xxy
+  [all-names union last-union]
+  (cond
+    (= 1 (count all-names)) (first all-names)
+    (= 2 (count all-names)) (str/join (str " " last-union) all-names)
+    :else (str/join (str union last-union) [(str/join union (butlast all-names)) (last all-names)]))
+  )
+
 (defn
   informal-greeting
   [names]
   (let [informal-names (filter upper-case? names)]
-    (str " AND HELLO " (str/join " AND " informal-names) "!")))
+    (str " AND HELLO " (xxy informal-names ", " "AND ") "!")))
 
 (defn addressing-multiple
   ""
   [all-names]
   (str
-    (cond
-      (= 1 (count all-names)) (first all-names)
-      (= 2 (count all-names)) (str/join " and " all-names)
-      :else (str/join ", and " [(str/join ", " (butlast all-names)) (last all-names)]))
+    (xxy all-names ", " "and ")
     "."
     ))
 
