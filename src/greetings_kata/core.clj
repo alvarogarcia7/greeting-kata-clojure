@@ -46,8 +46,7 @@
         {formal-names false informal-names true} (group-by upper-case? names)]
     (str
       (formal-greeting formal-names)
-      (if are-mixed-greetings
-        (informal-greeting informal-names)))))
+      (informal-greeting informal-names))))
 
 
 (defmulti addressing (fn [name] (coll? name)) :default name)
