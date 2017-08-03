@@ -41,8 +41,7 @@
   addressing-mixed
   [names]
   (let [are-mixed-greetings (different-case names)
-        informal-names (filter upper-case_? names)
-        formal-names (filter (comp not upper-case_?) names)]
+        {formal-names false informal-names true} (group-by upper-case? names)]
     (str
       (formal-greeting formal-names)
       (if are-mixed-greetings
