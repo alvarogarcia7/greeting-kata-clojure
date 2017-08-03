@@ -30,7 +30,7 @@
   (let [informal-names (filter upper-case? names)]
     (str " AND HELLO " (greet-multiple informal-names ", " "AND ") "!")))
 
-(defn addressing-multiple
+(defn formal-greeting
   ""
   [all-names]
   (str
@@ -45,7 +45,7 @@
         informal-names (filter upper-case_? names)
         formal-names (filter (comp not upper-case_?) names)]
     (str
-      (addressing-multiple formal-names)
+      (formal-greeting formal-names)
       (if are-mixed-greetings
         (informal-greeting informal-names)))))
 
@@ -54,7 +54,7 @@
 (defmethod addressing false [name] (str name "."))
 (defmethod addressing true [names] (if (different-case names)
                                      (addressing-mixed names)
-                                     (addressing-multiple names)))
+                                     (formal-greeting names)))
 
 
 (defn
