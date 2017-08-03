@@ -41,15 +41,11 @@
 (defn xxx
   [are-mixed-greetings formal-names informal-names]
   (letfn [(single? [coll] (= 1 (count coll)))
-          (two? [coll] (= 1 (count coll)))
-          ]
-    (let [a 1]
+          (two? [coll] (= 1 (count coll)))]
+    (str
+      (addressing-multiple formal-names)
       (if are-mixed-greetings
-        (str
-          (addressing-multiple formal-names)
-          (informal-greeting informal-names))
-
-        (addressing-multiple informal-names)))))
+        (informal-greeting informal-names)))))
 
 (defn
   addressing-mixed
