@@ -22,31 +22,50 @@
   (let [informal-names (filter upper-case? names)]
     (str " AND HELLO " (str/join " AND " informal-names) "!")))
 
-(defn
-  addressing-multiple-names
-  [names]
-  (let [are-mixed-greetings (different-case names)
-        all-names names
-        informal-names (filter upper-case_? names)
-        formal-names (filter (comp not upper-case_?) names)]
+(defn xxx
+  [are-mixed-greetings formal-names informal-names]
+  (let [a 1]
     (if are-mixed-greetings
       (str
-        (if (= (count names) 2)
-          (str/join " and " formal-names)
-          (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
+        (case (count formal-names)
+          1 (first formal-names)
+          2 (str/join " and " formal-names)
+          :else (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
         "."
         (informal-greeting informal-names))
 
       (str
-        (if (= (count names) 2)
-          (str/join " and " names)
-          (str/join ", and " [(str/join ", " (butlast all-names)) (last all-names)]))
+        (if (= (count informal-names) 2)
+          (str/join " and " informal-names)
+          (str/join ", and " [(str/join ", " (butlast informal-names)) (last informal-names)]))
         "."
-      ))))
+        ))))
+
+(defn addressing-multiple
+  ""
+  [all-names]
+  (str
+    (if (= (count all-names) 2)
+      (str/join " and " all-names)
+      (str/join ", and " [(str/join ", " (butlast all-names)) (last all-names)]))
+    "."
+    )
+  )
+
+(defn
+  addressing-mixed
+  [names]
+  (let [are-mixed-greetings (different-case names)
+        informal-names (filter upper-case_? names)
+        formal-names (filter (comp not upper-case_?) names)]
+    (xxx are-mixed-greetings formal-names informal-names)))
+
 
 (defmulti addressing (fn [name] (coll? name)) :default name)
 (defmethod addressing false [name] (str name "."))
-(defmethod addressing true [names] (addressing-multiple-names names))
+(defmethod addressing true [names] (if (different-case names)
+                                     (addressing-mixed names)
+                                     (addressing-multiple names)))
 
 
 (defn
