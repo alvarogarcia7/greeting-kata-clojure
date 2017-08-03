@@ -57,4 +57,5 @@
   (fact
     "greet one formally and several informally"
     (greet ["Personb" "PERSONC" "PERSONA"]) => "Hello, Personb. AND HELLO PERSONC AND PERSONA!"
+    (greet ["Personb" "PERSONC" "PERSONA" "PERSOND"]) => "Hello, Personb. AND HELLO PERSONC, PERSONA, AND PERSOND!"
     ))
