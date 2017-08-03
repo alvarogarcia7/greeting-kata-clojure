@@ -45,4 +45,8 @@
     "formal is first, no matter the order of the names"
     (greet ["Personb" "persona" "PERSONA" "PERSONB"]) => "Hello, Personb and persona. AND HELLO PERSONA AND PERSONB!"
     (greet ["PERSONA" "persona" "Personb" "PERSONB"]) => "Hello, persona and Personb. AND HELLO PERSONA AND PERSONB!"
+    )
+  (fact
+    "greet one formally and one informally"
+    (greet ["Personb" "PERSONA"]) => "Hello, Personb. AND HELLO PERSONA!"
     ))
