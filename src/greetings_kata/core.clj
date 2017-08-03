@@ -22,35 +22,30 @@
   (let [informal-names (filter upper-case? names)]
     (str " AND HELLO " (str/join " AND " informal-names) "!")))
 
+(defn addressing-multiple
+  ""
+  [all-names]
+  (str
+    (cond
+      (= 1 (count all-names)) (first all-names)
+      (= 2 (count all-names)) (str/join " and " all-names)
+      :else (str/join ", and " [(str/join ", " (butlast all-names)) (last all-names)]))
+    "."
+    ))
+
 (defn xxx
   [are-mixed-greetings formal-names informal-names]
   (let [a 1]
     (if are-mixed-greetings
       (str
-        (case (count formal-names)
-          1 (first formal-names)
-          2 (str/join " and " formal-names)
+        (cond
+          (= 1 (count formal-names)) (first formal-names)
+          (= 2 (count formal-names)) (str/join " and " formal-names)
           :else (str/join ", and " [(str/join ", " (butlast formal-names)) (last formal-names)]))
         "."
         (informal-greeting informal-names))
 
-      (str
-        (if (= (count informal-names) 2)
-          (str/join " and " informal-names)
-          (str/join ", and " [(str/join ", " (butlast informal-names)) (last informal-names)]))
-        "."
-        ))))
-
-(defn addressing-multiple
-  ""
-  [all-names]
-  (str
-    (if (= (count all-names) 2)
-      (str/join " and " all-names)
-      (str/join ", and " [(str/join ", " (butlast all-names)) (last all-names)]))
-    "."
-    )
-  )
+      (addressing-multiple informal-names))))
 
 (defn
   addressing-mixed
