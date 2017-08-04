@@ -40,14 +40,15 @@
   greet
   [name]
   (letfn [(as-coll [x] (if (coll? x) x [x]))
+          (process? [coll] (not (empty? coll)))
           (greet [m]
             (str
               (let [{lower :lower upper :upper} (get m :formal)]
                 (str
-                  (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
-                  (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
+                  (if (process? lower) (str "Hello, " (formal-greeting lower) "."))
+                  (if (process? upper) (str "HELLO, " (informal-greeting upper) "."))))
               (let [names (get-in m [:informal :names])]
-                (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
+                (if (process? names) (str " AND HELLO " (informal-greeting names) "!")))
               ))]
     (->> name
          as-coll
