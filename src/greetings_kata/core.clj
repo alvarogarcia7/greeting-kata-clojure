@@ -7,16 +7,6 @@
   [line]
   (and (> (count line) 0) (every? #(Character/isUpperCase %) line)))
 
-(defn
-  all-upper-case?
-  [names]
-  (every? upper-case? names))
-
-(defn
-  different-case
-  [coll]
-  (apply not= (map upper-case? coll)))
-
 (defn greet-multiple
   [all-names union last-union]
   (cond
@@ -35,34 +25,11 @@
   [all-names]
   (greet-multiple all-names ", " "and "))
 
-(defn
-  addressing-mixed
-  [names]
-  (let [are-mixed-greetings (different-case names)
-        {formal-names false informal-names true} (group-by upper-case? names)]
-    (str
-      (formal-greeting formal-names)
-      (informal-greeting informal-names))))
-
-
-(defn
-  addressing
-  [names]
-  (if (different-case names)
-    (addressing-mixed names)
-    (formal-greeting names)))
-
-;{:formal
-;           {:lower []
-;            :upper []
-;            }
-; :informal []}
 
 (defn
   greet
   [name]
-  (letfn [#_(in-requests [names] (group-by upper-case_? names))
-          (as-coll [x] (if (coll? x) x [x]))
+  (letfn [(as-coll [x] (if (coll? x) x [x]))
           (prepare-greetings [names]
             (let [{formal-names false informal-names true} (group-by upper-case? names)
                   both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
