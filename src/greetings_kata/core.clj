@@ -67,7 +67,7 @@
             (let [{formal-names false informal-names true} (group-by upper-case? names)
                   both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
               {:formal
-               {:lower (if (every? #(= nil %) names) ["my friend"] (if (not both-styles) formal-names formal-names))
+               {:lower (if (every? #(= nil %) names) ["my friend"] formal-names)
                 :upper (if (not both-styles) informal-names)}
                :informal
                {:names (if both-styles informal-names [])}}))
