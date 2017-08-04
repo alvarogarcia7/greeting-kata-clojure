@@ -3,13 +3,14 @@
   (:require [clojure.string :as str]))
 
 (defn
-  upper-case_?
+  upper-case?
   [line]
   (and (> (count line) 0) (every? #(Character/isUpperCase %) line)))
 
-(defmulti upper-case? (fn [name] (coll? name)) :default name)
-(defmethod upper-case? true [names] (every? upper-case_? names))
-(defmethod upper-case? false [name] (upper-case_? name))
+(defn
+  all-upper-case?
+  [names]
+  (every? upper-case? names))
 
 (defn
   different-case
@@ -21,8 +22,8 @@
   (cond
     (= 1 (count all-names)) (first all-names)
     (= 2 (count all-names)) (str/join (str " " last-union) all-names)
-    :else (str/join (str union last-union) [(str/join union (butlast all-names)) (last all-names)]))
-  )
+    :else (str/join (str union last-union) [(str/join union (butlast all-names)) (last all-names)])))
+
 
 (defn
   informal-greeting
@@ -48,25 +49,28 @@
       (informal-greeting informal-names))))
 
 
-(defmulti addressing (fn [name] (coll? name)) :default name)
-(defmethod addressing false [name] (addressing [name]))
-(defmethod addressing true [names] (if (different-case names)
-                                     (addressing-mixed names)
-                                     (formal-greeting names)))
+(defn
+  addressing
+  [names]
+  (if (different-case names)
+    (addressing-mixed names)
+    (formal-greeting names)))
 
 
 (defn
   greet
   [name]
   (letfn [#_(in-requests [names] (group-by upper-case_? names))
-          (anonymous? [name] (nil? name))
+          (as-coll [x] (if (coll? x) x [x]))
+          (anonymous? [names] (empty? name))
           (base-greeting [rest] (str "Hello, " rest))
           (anonymous-greeting [_] (base-greeting "my friend."))
           (personalized-greeting [name] (base-greeting name))
           ]
-    (let [greeting (if (anonymous? name) anonymous-greeting personalized-greeting)
-          greeting (if (upper-case? name) (comp str/upper-case greeting) greeting)
-          names (addressing name)]
+    (let [names (as-coll name)
+          greeting (if (anonymous? names) anonymous-greeting personalized-greeting)
+          greeting (if (all-upper-case? names) (comp str/upper-case greeting) greeting)
+          names (addressing names)]
       (greeting names))))
 
 
