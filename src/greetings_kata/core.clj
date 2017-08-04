@@ -73,13 +73,13 @@
                {:names (if both-styles informal-names [])}}))
           ]
     (let [names (as-coll name)
-          x (prepare-greetings names)]
+          m (prepare-greetings names)]
       (str
-        (let [{lower :lower upper :upper} (get x :formal)]
+        (let [{lower :lower upper :upper} (get m :formal)]
           (str
             (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
             (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
-        (let [names (get-in x [:informal :names])]
+        (let [names (get-in m [:informal :names])]
           (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
         ))))
 
