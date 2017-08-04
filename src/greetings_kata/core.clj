@@ -17,8 +17,8 @@
 
 (defn
   informal-greeting
-  [informal-names]
-  (greet-multiple informal-names ", " "AND ")
+  [names]
+  (greet-multiple names ", " "AND ")
   )
 
 (defn formal-greeting
