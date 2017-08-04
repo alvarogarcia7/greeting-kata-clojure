@@ -28,16 +28,12 @@
 (defn
   informal-greeting
   [informal-names]
-  (str
-    " AND HELLO "
-    (greet-multiple informal-names ", " "AND ")
-    "!"))
+  (greet-multiple informal-names ", " "AND ")
+  )
 
 (defn formal-greeting
   [all-names]
-  (str
-    (greet-multiple all-names ", " "and ")
-    "."))
+  (greet-multiple all-names ", " "and "))
 
 (defn
   addressing-mixed
@@ -67,15 +63,30 @@
   [name]
   (letfn [#_(in-requests [names] (group-by upper-case_? names))
           (as-coll [x] (if (coll? x) x [x]))
-          (anonymous? [names] (empty? name))
-          (base-greeting [rest] (str "Hello, " rest))
-          (anonymous-greeting [_] (base-greeting "my friend."))
-          (personalized-greeting [name] (base-greeting name))
+          (xxx [names]
+            (let [{formal-names false informal-names true} (group-by upper-case? names)
+                  both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
+              {:formal
+               {:lower (if (every? #(= nil %) names) ["my friend"] (if (not both-styles) formal-names formal-names))
+                :upper (if (not both-styles) informal-names)}
+               :informal
+               {:names (if both-styles informal-names [])}}))
           ]
     (let [names (as-coll name)
-          greeting (if (anonymous? names) anonymous-greeting personalized-greeting)
-          greeting (if (all-upper-case? names) (comp str/upper-case greeting) greeting)
-          names (addressing names)]
-      (greeting names))))
+          x (xxx names)]
+      (println names)
+      (println x)
+      (str
+        ;; formal, lowercase
+        (let [formal (get x :formal)
+              lower (get formal :lower)
+              upper (get formal :upper)]
+          (str
+            (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
+            (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
+        (let [informal (get x :informal)
+              names (get informal :names)]
+          (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
+        ))))
 
 
