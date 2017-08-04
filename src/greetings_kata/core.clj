@@ -49,7 +49,7 @@
 
 
 (defmulti addressing (fn [name] (coll? name)) :default name)
-(defmethod addressing false [name] (str name "."))
+(defmethod addressing false [name] (addressing [name]))
 (defmethod addressing true [names] (if (different-case names)
                                      (addressing-mixed names)
                                      (formal-greeting names)))
