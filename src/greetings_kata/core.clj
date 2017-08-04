@@ -49,9 +49,9 @@
               (let [names (get-in m [:informal :names])]
                 (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
               ))]
-    (let [names (as-coll name)
-          m (prepare-greetings names)
-          message (greet m)]
-      message)))
+    (->> name
+         as-coll
+         prepare-greetings
+         greet)))
 
 
