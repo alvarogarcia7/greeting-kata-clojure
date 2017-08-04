@@ -77,7 +77,6 @@
       (println names)
       (println x)
       (str
-        ;; formal, lowercase
         (let [formal (get x :formal)
               lower (get formal :lower)
               upper (get formal :upper)]
