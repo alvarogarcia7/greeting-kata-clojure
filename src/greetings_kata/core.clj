@@ -25,20 +25,21 @@
   [names]
   (greet-multiple names ", " "and "))
 
+(defn
+  prepare-greetings
+  [names]
+  (let [{formal-names false informal-names true} (group-by upper-case? names)
+        both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
+    {:formal
+     {:lower (if (every? #(= nil %) names) ["my friend"] formal-names)
+      :upper (if (not both-styles) informal-names)}
+     :informal
+     {:names (if both-styles informal-names [])}}))
 
 (defn
   greet
   [name]
-  (letfn [(as-coll [x] (if (coll? x) x [x]))
-          (prepare-greetings [names]
-            (let [{formal-names false informal-names true} (group-by upper-case? names)
-                  both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
-              {:formal
-               {:lower (if (every? #(= nil %) names) ["my friend"] formal-names)
-                :upper (if (not both-styles) informal-names)}
-               :informal
-               {:names (if both-styles informal-names [])}}))
-          ]
+  (letfn [(as-coll [x] (if (coll? x) x [x]))]
     (let [names (as-coll name)
           m (prepare-greetings names)]
       (str
