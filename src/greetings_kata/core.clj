@@ -22,8 +22,8 @@
   )
 
 (defn formal-greeting
-  [all-names]
-  (greet-multiple all-names ", " "and "))
+  [names]
+  (greet-multiple names ", " "and "))
 
 
 (defn
