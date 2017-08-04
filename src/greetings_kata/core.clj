@@ -63,7 +63,7 @@
   [name]
   (letfn [#_(in-requests [names] (group-by upper-case_? names))
           (as-coll [x] (if (coll? x) x [x]))
-          (xxx [names]
+          (prepare-greetings [names]
             (let [{formal-names false informal-names true} (group-by upper-case? names)
                   both-styles (and (not (nil? formal-names)) (not (nil? informal-names)))]
               {:formal
@@ -73,7 +73,7 @@
                {:names (if both-styles informal-names [])}}))
           ]
     (let [names (as-coll name)
-          x (xxx names)]
+          x (prepare-greetings names)]
       (str
         (let [{lower :lower upper :upper} (get x :formal)]
           (str
