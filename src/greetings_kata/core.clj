@@ -81,8 +81,7 @@
           (str
             (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
             (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
-        (let [informal (get x :informal)
-              names (get informal :names)]
+        (let [names (get-in x [:informal :names])]
           (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
         ))))
 
