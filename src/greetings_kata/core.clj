@@ -75,9 +75,7 @@
     (let [names (as-coll name)
           x (xxx names)]
       (str
-        (let [formal (get x :formal)
-              lower (get formal :lower)
-              upper (get formal :upper)]
+        (let [{lower :lower upper :upper} (get x :formal)]
           (str
             (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
             (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
