@@ -74,8 +74,6 @@
           ]
     (let [names (as-coll name)
           x (xxx names)]
-      (println names)
-      (println x)
       (str
         (let [formal (get x :formal)
               lower (get formal :lower)
