@@ -56,6 +56,11 @@
     (addressing-mixed names)
     (formal-greeting names)))
 
+;{:formal
+;           {:lower []
+;            :upper []
+;            }
+; :informal []}
 
 (defn
   greet
