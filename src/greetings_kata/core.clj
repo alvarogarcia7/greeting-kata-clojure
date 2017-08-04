@@ -39,16 +39,19 @@
 (defn
   greet
   [name]
-  (letfn [(as-coll [x] (if (coll? x) x [x]))]
+  (letfn [(as-coll [x] (if (coll? x) x [x]))
+          (greet [m]
+            (str
+              (let [{lower :lower upper :upper} (get m :formal)]
+                (str
+                  (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
+                  (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
+              (let [names (get-in m [:informal :names])]
+                (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
+              ))]
     (let [names (as-coll name)
-          m (prepare-greetings names)]
-      (str
-        (let [{lower :lower upper :upper} (get m :formal)]
-          (str
-            (if (not (empty? lower)) (str "Hello, " (formal-greeting lower) "."))
-            (if (not (empty? upper)) (str "HELLO, " (informal-greeting upper) "."))))
-        (let [names (get-in m [:informal :names])]
-          (if (not (empty? names)) (str " AND HELLO " (informal-greeting names) "!")))
-        ))))
+          m (prepare-greetings names)
+          message (greet m)]
+      message)))
 
 
